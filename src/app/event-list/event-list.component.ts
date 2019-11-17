@@ -7,7 +7,7 @@ import { EventsService } from '../services/events.service';
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-  events: any[];
+  events: any[] = [];
   noEvents: boolean = false;
 
   constructor(private eventsService: EventsService) {}
@@ -17,7 +17,9 @@ export class EventListComponent implements OnInit {
     this.eventsService
       .getEvents()
       .subscribe(data => {
-        this.events = data._embedded.events;
+        if("_embedded" in data){
+          this.events = data._embedded.events;
+        }
         if(this.events.length === 0){
           this.noEvents = true;
         }

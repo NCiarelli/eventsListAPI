@@ -7,13 +7,13 @@ import { BucketlistPageComponent } from './bucketlist-page/bucketlist-page.compo
 
 const routes: Routes = [
   // { path: "search", component: SearchCriteriaComponent },
-  { path: "event-list", component: EventListComponent },
-  { path: "bucketlist", component: BucketlistPageComponent },
+  { path: "event-list", component: EventListComponent, runGuardsAndResolvers: "always" },
+  { path: "bucketlist", component: BucketlistPageComponent, runGuardsAndResolvers: "always" },
   { path: "", redirectTo: "/event-list", pathMatch: "full" },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: "reload"})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

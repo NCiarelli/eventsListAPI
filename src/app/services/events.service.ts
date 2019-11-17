@@ -14,7 +14,7 @@ export class EventsService {
 
   private generalSearchCriteria: SearchCriteria = {
     keyword:'', 
-    location: '', 
+    location: '48201', 
     startDate: '2019-11-01', 
     endDate: '2019-12-30'
   };
@@ -41,5 +41,9 @@ export class EventsService {
 
   setSearchCriteria(newSearchCriteria:SearchCriteria):void{
     this.generalSearchCriteria = newSearchCriteria;
+  }
+
+  getSearchCriteria():SearchCriteria{
+    return this.generalSearchCriteria;
   }
 }
