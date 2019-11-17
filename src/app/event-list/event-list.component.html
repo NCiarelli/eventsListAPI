@@ -1,4 +1,5 @@
-<p>event-list works!</p>
+<h1>Events Search</h1>
+<h2 *ngIf="noEvents">Sorry, no events found</h2>
 <section *ngFor='let event of events'>
   <h2><a [href]='event.url'>{{event.name}}</a></h2>
 </section>

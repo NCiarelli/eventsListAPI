@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { SearchCriteria } from '../interfaces/search-criteria';
 
 const API_KEY = 'LLdgJghk51V7AYIAIQQOFooFLTMrT01s';
+const TIME_APPEND = "T00:00:00Z"; 
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class EventsService {
   private generalSearchCriteria: SearchCriteria = {
     keyword:'', 
     location: '', 
-    startDate: '2019-11-01T00:00:00Z', 
-    endDate: '2019-12-30T00:00:00Z'
+    startDate: '2019-11-01', 
+    endDate: '2019-12-30'
   };
 
   private bucketList:any[];
@@ -30,8 +31,8 @@ export class EventsService {
           apikey: API_KEY,
           locale: 'en',
           keyword: this.generalSearchCriteria.keyword,
-          startDateTime: this.generalSearchCriteria.startDate,
-          endDateTime: this.generalSearchCriteria.endDate,
+          startDateTime: this.generalSearchCriteria.startDate + TIME_APPEND,
+          endDateTime: this.generalSearchCriteria.endDate + TIME_APPEND,
           postalCode: this.generalSearchCriteria.location
         }
       }

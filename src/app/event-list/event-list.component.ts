@@ -8,6 +8,7 @@ import { EventsService } from '../services/events.service';
 })
 export class EventListComponent implements OnInit {
   events: any[];
+  noEvents: boolean = false;
 
   constructor(private eventsService: EventsService) {}
 
@@ -17,6 +18,9 @@ export class EventListComponent implements OnInit {
       .getEvents()
       .subscribe(data => {
         this.events = data._embedded.events;
+        if(this.events.length === 0){
+          this.noEvents = true;
+        }
         console.log(this.events);
       });
   }

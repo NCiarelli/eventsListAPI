@@ -1,1 +1,11 @@
-<p>search-criteria works!</p>
+<form (ngSubmit)="onSubmit()">
+  <label for="">Keyword<input type="text" 
+    name="keyword" [(ngModel)]="newSearchCriteria.keyword"></label>
+  <label for="">Zip Code<input type="number" 
+    name="location" [(ngModel)]="newSearchCriteria.location"></label>
+  <label for="">Search Start Date<input type="date" 
+    name="startDateTime" [(ngModel)]="newSearchCriteria.startDate"></label>
+  <label for="">Search End Date<input type="date" 
+    name="endDateTime" [(ngModel)]="newSearchCriteria.endDate"></label>
+  <button type="submit">Search</button>
+</form>
