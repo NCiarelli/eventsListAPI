@@ -4,16 +4,15 @@ import { SearchCriteriaComponent } from './search-criteria/search-criteria.compo
 import { EventListComponent } from './event-list/event-list.component';
 import { BucketlistPageComponent } from './bucketlist-page/bucketlist-page.component';
 
-
 const routes: Routes = [
   // { path: "search", component: SearchCriteriaComponent },
-  { path: "event-list", component: EventListComponent, runGuardsAndResolvers: "always" },
-  { path: "bucketlist", component: BucketlistPageComponent, runGuardsAndResolvers: "always" },
-  { path: "", redirectTo: "/event-list", pathMatch: "full" },
+  { path: 'event-list', component: EventListComponent },
+  { path: 'bucketlist', component: BucketlistPageComponent },
+  { path: '', redirectTo: '/event-list', pathMatch: 'full' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: "reload"})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

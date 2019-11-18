@@ -1,1 +1,9 @@
-<p>bucketlist-page works!</p>
+<h1>Bucketlist</h1>
+<h2>Filter Bucketlist</h2>
+<app-search-criteria (search)="filterList()" [listType]="bucketList"></app-search-criteria>
+<h2 *ngIf="noEvents">Sorry, no events found</h2>
+<section *ngFor='let event of events'>
+  <h2><a [href]='event.url'>{{event.name}}</a></h2>
+  <p>Date: {{event.dates.start.localDate}} Time: {{event.dates.start.localTime}}</p>
+  <!-- <p>Price Range: From ${{event.priceRanges[0].min}} to ${{event.priceRanges[0].max}}</p> -->
+</section>
