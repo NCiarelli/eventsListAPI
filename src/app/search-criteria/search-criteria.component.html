@@ -1,10 +1,10 @@
 <form (ngSubmit)="onSubmit()">
-  <label for="">Keyword<input type="text" name="keyword" [(ngModel)]="newSearchCriteria.keyword"></label>
-  <label for="">Zip Code<input type="text" name="location" [(ngModel)]="newSearchCriteria.location"></label>
-  <label for="">Search Radius in miles<input type="number" name="radius" [(ngModel)]="newSearchCriteria.radius" min="0"
-      max="50" step="5"></label>
-  <label for="">Search Start Date<input type="date" name="startDateTime"
+  <label for="">Keyword: <input type="text" name="keyword" [(ngModel)]="newSearchCriteria.keyword"></label>
+  <label for="">Zip Code: <input type="text" name="location" [(ngModel)]="newSearchCriteria.location"></label>
+  <label for="">Search Radius in Miles: <input type="number" name="radius" [(ngModel)]="newSearchCriteria.radius"
+      min="0" max="50" step="5"></label>
+  <label for="">Search Start Date: <input type="date" name="startDateTime"
       [(ngModel)]="newSearchCriteria.startDate"></label>
-  <label for="">Search End Date<input type="date" name="endDateTime" [(ngModel)]="newSearchCriteria.endDate"></label>
+  <label for="">Search End Date: <input type="date" name="endDateTime" [(ngModel)]="newSearchCriteria.endDate"></label>
   <button type="submit">Search</button>
 </form>

@@ -1,11 +1,11 @@
-<h1>Events Search</h1>
+<h2>Events Search</h2>
 <app-search-criteria (search)="onSearch()" [listType]="'generalList'"></app-search-criteria>
-<h2 *ngIf="noEvents">Sorry, no events found</h2>
+<p *ngIf="noEvents">Sorry, no events found</p>
 <a routerLink="/bucketlist">View Bucket List</a>
 <section *ngFor='let event of events'>
-  <h2><a [href]='event.url'>{{event.name}}</a> <button type="button" (click)="saveEvent(event)">Add to Bucket
+  <h3><a [href]='event.url'>{{event.name}}</a> <button type="button" (click)="saveEvent(event)">Add to Bucket
       List</button>
-  </h2>
+  </h3>
   <p *ngIf="event.hasOwnProperty('_embedded')">Venue: {{event._embedded.venues[0].name}}</p>
   <p>Date: {{event.dates.start.localDate}} Time: {{event.dates.start.localTime}}</p>
   <p *ngIf="event.hasOwnProperty('priceRanges')">Price Range: From ${{event.priceRanges[0].min}} to
