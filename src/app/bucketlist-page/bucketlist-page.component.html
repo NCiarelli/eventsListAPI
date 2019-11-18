@@ -1,6 +1,6 @@
 <h1>Bucketlist</h1>
 <h2>Filter Bucketlist</h2>
-<a routerLink="/event-list">Back to Search List</a>
+<a routerLink="/event-list/0">Back to Search List</a>
 <app-search-criteria (search)="filterList()" [listType]="bucketList"></app-search-criteria>
 <h2 *ngIf="noEvents">Sorry, no events found</h2>
 <section *ngFor='let event of events'>

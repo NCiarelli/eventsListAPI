@@ -17,7 +17,8 @@ export class SearchCriteriaComponent implements OnInit {
     keyword: '',
     location: '',
     startDate: '',
-    endDate: ''
+    endDate: '',
+    radius: '10'
   };
 
   constructor(private eventsService: EventsService, private router: Router) {}

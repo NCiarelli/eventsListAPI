@@ -18,14 +18,15 @@ export class EventsService {
     keyword: '',
     location: '48201',
     startDate: '2019-11-01',
-    endDate: '2019-12-30'
+    endDate: '2019-12-30',
+    radius: '10'
   };
 
   private bucketList: any[] = [];
 
   private bucketListSearchCriteria: SearchCriteria;
 
-  getEvents(): Observable<any> {
+  getEvents(page): Observable<any> {
     return this.http.get(
       'https://app.ticketmaster.com/discovery/v2/events.json?',
       {
@@ -35,7 +36,10 @@ export class EventsService {
           keyword: this.generalSearchCriteria.keyword,
           startDateTime: this.generalSearchCriteria.startDate + TIME_APPEND,
           endDateTime: this.generalSearchCriteria.endDate + TIME_APPEND,
-          postalCode: this.generalSearchCriteria.location
+          postalCode: this.generalSearchCriteria.location,
+          radius: this.generalSearchCriteria.radius,
+          unit: 'miles',
+          page: page
         }
       }
     );

@@ -12,3 +12,8 @@
     ${{event.priceRanges[0].max}}
   </p>
 </section>
+<a *ngIf="page > 0" [routerLink]="prev">&lt;</a>
+<p>{{page}}</p>
+<a *ngIf="nextExist" [routerLink]="next">&gt;</a>
+<p *ngIf="!nextExist">Max Pages reached</p>
+<p *ngIf="tooManyResults">Please refine your search.</p>

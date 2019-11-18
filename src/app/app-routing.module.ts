@@ -5,10 +5,9 @@ import { EventListComponent } from './event-list/event-list.component';
 import { BucketlistPageComponent } from './bucketlist-page/bucketlist-page.component';
 
 const routes: Routes = [
-  // { path: "search", component: SearchCriteriaComponent },
-  { path: 'event-list', component: EventListComponent },
   { path: 'bucketlist', component: BucketlistPageComponent },
-  { path: '', redirectTo: '/event-list', pathMatch: 'full' }
+  { path: 'event-list/:page', component: EventListComponent },
+  { path: '', redirectTo: '/event-list/0', pathMatch: 'full' }
 ];
 
 @NgModule({
