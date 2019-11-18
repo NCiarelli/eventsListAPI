@@ -1,6 +1,7 @@
 <h1>Events Search</h1>
 <app-search-criteria (search)="onSearch()" [listType]="'generalList'"></app-search-criteria>
 <h2 *ngIf="noEvents">Sorry, no events found</h2>
+<a routerLink="/bucketlist">View Bucket List</a>
 <section *ngFor='let event of events'>
   <h2><a [href]='event.url'>{{event.name}}</a> <button type="button" (click)="saveEvent(event)">Add to Bucket
       List</button>

@@ -53,11 +53,22 @@ export class EventsService {
     if (
       this.bucketList.find(event => event.id === eventToSave.id) === undefined
     ) {
-      // If the event to save is not currently in the bucketlist (find returns undefined)
-      // Add the event to the bucketlist
+      // If the event to save is not currently in the bucket list (find returns undefined)
+      // Add the event to the bucket list
       this.bucketList.push(eventToSave);
       console.log('Added to Bucket List.');
       console.log(this.bucketList);
     }
+  }
+
+  getBucketList(): any[] {
+    return this.bucketList;
+  }
+
+  removeBucketListEvent(event): void {
+    // Find and store index of event to be removed
+    let index = this.bucketList.indexOf(event);
+    // Remove the event from the Bucket List
+    this.bucketList.splice(index, 1);
   }
 }
