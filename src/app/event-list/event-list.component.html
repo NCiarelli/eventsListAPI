@@ -2,16 +2,18 @@
 <app-search-criteria (search)="onSearch()" [listType]="'generalList'"></app-search-criteria>
 <p *ngIf="noEvents">Sorry, no events found</p>
 <a routerLink="/bucketlist">View Bucket List</a>
-<section *ngFor='let event of events; index as i'>
-  <h3><a [href]='event.url'>{{event.name}}</a>
+<section (click)="hideEvent(i)" *ngFor='let event of events; index as i'>
+  <h3>
+    <img [src]="event.images[0].url" alt="">
+    <a [href]='event.url'>{{event.name}}</a>
     <button type="button" (click)="saveEvent(event, i)" *ngIf="!eventInBucketList[i]">Add to Bucket List</button>
     <p *ngIf="eventInBucketList[i]">Event in Bucket List</p>
   </h3>
-  <p *ngIf="event.hasOwnProperty('_embedded')">Venue: {{event._embedded.venues[0].name}}</p>
-  <p>Date: {{event.dates.start.localDate}} Time: {{event.dates.start.localTime}}</p>
-  <p *ngIf="event.hasOwnProperty('priceRanges')">Price Range: From ${{event.priceRanges[0].min}} to
-    ${{event.priceRanges[0].max}}
-  </p>
+  <p *ngIf="event.hasOwnProperty('_embedded') && !hideEventDetails[i]">Venue: {{event._embedded.venues[0].name}}</p>
+  <p *ngIf="!hideEventDetails[i]">Date: {{event.dates.start.localDate}} Time: {{event.dates.start.localTime}}</p>
+  <p *ngIf="event.hasOwnProperty('priceRanges') && !hideEventDetails[i]">Price Range: From ${{event.priceRanges[0].min}}
+    to
+    ${{event.priceRanges[0].max}}</p>
 </section>
 <a *ngIf="page > 0" [routerLink]="prev">&lt;</a>
 <p>{{page}}</p>

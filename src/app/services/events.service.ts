@@ -1,25 +1,25 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { SearchCriteria } from '../interfaces/search-criteria';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { SearchCriteria } from "../interfaces/search-criteria";
 
-const API_KEY = 'LLdgJghk51V7AYIAIQQOFooFLTMrT01s';
-const TIME_APPEND = 'T00:00:00Z';
+const API_KEY = "LLdgJghk51V7AYIAIQQOFooFLTMrT01s";
+const TIME_APPEND = "T00:00:00Z";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class EventsService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   generalEventsList: any[] = [];
 
   private generalSearchCriteria: SearchCriteria = {
-    keyword: '',
-    location: '48201',
-    startDate: '2019-11-01',
-    endDate: '2019-12-30',
-    radius: '10'
+    keyword: "",
+    location: "48201",
+    startDate: "2019-11-01",
+    endDate: "2019-12-30",
+    radius: "10"
   };
 
   private bucketList: any[] = [];
@@ -28,17 +28,17 @@ export class EventsService {
 
   getEvents(page): Observable<any> {
     return this.http.get(
-      'https://app.ticketmaster.com/discovery/v2/events.json?',
+      "https://app.ticketmaster.com/discovery/v2/events.json?",
       {
         params: {
           apikey: API_KEY,
-          locale: 'en',
+          locale: "en",
           keyword: this.generalSearchCriteria.keyword,
           startDateTime: this.generalSearchCriteria.startDate + TIME_APPEND,
           endDateTime: this.generalSearchCriteria.endDate + TIME_APPEND,
           postalCode: this.generalSearchCriteria.location,
           radius: this.generalSearchCriteria.radius,
-          unit: 'miles',
+          unit: "miles",
           page: page
         }
       }
@@ -60,7 +60,7 @@ export class EventsService {
       // If the event to save is not currently in the bucket list (find returns undefined)
       // Add the event to the bucket list and return true
       this.bucketList.push(eventToSave);
-      console.log('Added to Bucket List.');
+      console.log("Added to Bucket List.");
       console.log(this.bucketList);
       return true;
     } else {
@@ -75,9 +75,7 @@ export class EventsService {
 
   // Method to check if an event with a certain id is present in the bucket list
   inBucketList(eventId): boolean {
-    if (
-      this.bucketList.find(event => event.id === eventId) === undefined
-    ) {
+    if (this.bucketList.find(event => event.id === eventId) === undefined) {
       return false;
     } else {
       return true;

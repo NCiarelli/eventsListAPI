@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { EventsService } from '../services/events.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { EventsService } from "../services/events.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-event-list',
-  templateUrl: './event-list.component.html',
-  styleUrls: ['./event-list.component.css']
+  selector: "app-event-list",
+  templateUrl: "./event-list.component.html",
+  styleUrls: ["./event-list.component.css"]
 })
 export class EventListComponent implements OnInit, OnDestroy {
   // Variables for event list storage
@@ -24,12 +24,14 @@ export class EventListComponent implements OnInit, OnDestroy {
 
   // Variables for Bucket List handling
   eventInBucketList: boolean[] = [];
+  // Empty array to hide event details
+  hideEventDetails: boolean[] = [];
 
   constructor(
     private eventsService: EventsService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
     // Subscribe to the active route params
@@ -40,7 +42,7 @@ export class EventListComponent implements OnInit, OnDestroy {
       // Call for the page of events to show on the list
       this.onSearch(this.page);
       // Set up prev and next page routes
-      this.prev = '/event-list/' + String(parseInt(this.page) - 1);
+      this.prev = "/event-list/" + String(parseInt(this.page) - 1);
     });
   }
 
@@ -52,10 +54,10 @@ export class EventListComponent implements OnInit, OnDestroy {
   }
 
   // Method to get the events list based on search criteria stored in the eventsService
-  onSearch(page = '0') {
+  onSearch(page = "0") {
     this.eventsService.getEvents(page).subscribe(data => {
       // Once the HTTP Request returns data ...
-      if ('_embedded' in data) {
+      if ("_embedded" in data) {
         // If the returned data contains an '_embedded' property, some events fulfilled the search criteria
         // So store them in the events array
         this.events = data._embedded.events;
@@ -64,16 +66,18 @@ export class EventListComponent implements OnInit, OnDestroy {
         // Then check if each is in the Bucket List and store the result in the eventInBucketList Array
         this.events.forEach((event, i) => {
           this.eventInBucketList[i] = this.eventsService.inBucketList(event.id);
+          // All event details are automatically set to be hidden
+          this.hideEventDetails[i] = true;
         });
         // Code to handle next and previous page links and if the end was reached
-        console.log('Pages: ', data.page.totalPages);
+        console.log("Pages: ", data.page.totalPages);
         this.maxPages = data.page.totalPages;
         let nextPage = parseInt(this.page) + 1;
-        console.log('Next page: ', nextPage);
+        console.log("Next page: ", nextPage);
         if (this.maxPages > nextPage && nextPage < 50) {
-          this.next = '/event-list/' + String(nextPage);
+          this.next = "/event-list/" + String(nextPage);
           this.nextExist = true;
-          console.log('Next link should exist');
+          console.log("Next link should exist");
         } else if (nextPage === 50) {
           this.tooManyResults = true;
         } else {
@@ -95,5 +99,9 @@ export class EventListComponent implements OnInit, OnDestroy {
   saveEvent(eventToSave, index) {
     this.eventsService.addBucketListEvent(eventToSave);
     this.eventInBucketList[index] = true;
+  }
+
+  hideEvent(index) {
+    this.hideEventDetails[index] = !this.hideEventDetails[index];
   }
 }
