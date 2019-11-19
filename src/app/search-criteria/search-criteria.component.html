@@ -7,4 +7,5 @@
       [(ngModel)]="newSearchCriteria.startDate"></label>
   <label for="">Search End Date: <input type="date" name="endDateTime" [(ngModel)]="newSearchCriteria.endDate"></label>
   <button type="submit">Search</button>
+  <button type="button" (click)="clearFilter()">Clear Filters</button>
 </form>

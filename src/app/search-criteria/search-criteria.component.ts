@@ -59,4 +59,24 @@ export class SearchCriteriaComponent implements OnInit {
     // Emit an event to indicate that the user submitted a search
     this.search.emit();
   }
+
+  clearFilter() {
+    this.newSearchCriteria = {
+      keyword: "",
+      location: "",
+      startDate: "",
+      endDate: "",
+      radius: "10"
+    };
+    if (this.listType === "bucketList") {
+      // If the bucketlist is up
+      // Send the filter criteria to the service for use when filtering the bucketlist events
+      this.eventsService.setfilterCriteria(this.newSearchCriteria);
+    } else if (this.listType === "generalList") {
+      // If the general event list is up
+      // Send the new search criteria to the service to be used for requests
+      // to the Ticketmaster API
+      this.eventsService.setSearchCriteria(this.newSearchCriteria);
+    }
+  }
 }

@@ -1,4 +1,4 @@
-<h2>Events Search</h2>
+<h2 id="eventHeader">Events Search</h2>
 <app-search-criteria (search)="onSearch()" [listType]="'generalList'"></app-search-criteria>
 <p *ngIf="noEvents">Sorry, no events found</p>
 <a id='viewBucketlist' routerLink="/bucketlist">View Bucket List</a>
@@ -17,7 +17,7 @@
     to
     ${{event.priceRanges[0].max}}</p>
 </section>
-<a *ngIf="page > 0" [routerLink]="prev">&lt;</a>
+<a *ngIf="page > '0'" [routerLink]="prev">&lt;</a>
 <p>{{page}}</p>
 <a *ngIf="nextExist" [routerLink]="next">&gt;</a>
 <p *ngIf="!nextExist">Max Pages reached</p>

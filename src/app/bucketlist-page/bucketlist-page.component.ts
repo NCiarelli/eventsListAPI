@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Pipe, PipeTransform } from "@angular/core";
 import { EventsService } from "../services/events.service";
 import { Router } from "@angular/router";
 
@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 })
 export class BucketlistPageComponent implements OnInit {
   events: any[] = [];
+  noEvents: boolean = true;
 
   hideEventDetails: boolean[] = [];
 
@@ -21,6 +22,13 @@ export class BucketlistPageComponent implements OnInit {
     // Events there are in the bucket list
     this.hideEventDetails = new Array(this.events.length).fill(true);
     // console.log("hideEventDetails: ", this.hideEventDetails);
+
+    // If there are no events, trigger the flasg for it
+    if (this.events.length === 0) {
+      this.noEvents = true;
+    } else {
+      this.noEvents = false;
+    }
   }
 
   removeEvent(eventData, event, index) {
@@ -36,5 +44,11 @@ export class BucketlistPageComponent implements OnInit {
   filterList() {
     this.events = this.eventsService.filterBucketList();
     this.hideEventDetails = new Array(this.events.length).fill(true);
+    // If there are no events, trigger the flasg for it
+    if (this.events.length === 0) {
+      this.noEvents = true;
+    } else {
+      this.noEvents = false;
+    }
   }
 }

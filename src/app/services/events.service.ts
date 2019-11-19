@@ -33,6 +33,14 @@ export class EventsService {
   };
 
   getEvents(page): Observable<any> {
+    let tempStartDate: string = this.generalSearchCriteria.startDate;
+    let tempEndDate: string = this.generalSearchCriteria.endDate;
+    if (tempStartDate !== "") {
+      tempStartDate += TIME_APPEND;
+    }
+    if (tempEndDate !== "") {
+      tempEndDate += TIME_APPEND;
+    }
     return this.http.get(
       "https://app.ticketmaster.com/discovery/v2/events.json?",
       {
@@ -40,8 +48,8 @@ export class EventsService {
           apikey: API_KEY,
           locale: "en",
           keyword: this.generalSearchCriteria.keyword,
-          startDateTime: this.generalSearchCriteria.startDate + TIME_APPEND,
-          endDateTime: this.generalSearchCriteria.endDate + TIME_APPEND,
+          startDateTime: tempStartDate,
+          endDateTime: tempEndDate,
           postalCode: this.generalSearchCriteria.location,
           radius: this.generalSearchCriteria.radius,
           unit: "miles",
@@ -98,6 +106,7 @@ export class EventsService {
   filterBucketList(): any[] {
     console.log("BucketList filter: ", this.bucketListFilterCriteria);
     let filteredArray = this.bucketList.filter(event => {
+      // // DEBUG
       // console.log(
       //   this.bucketListFilterCriteria.keyword,
       //   " compared to ",
@@ -111,14 +120,15 @@ export class EventsService {
     });
     if (this.bucketListFilterCriteria.location !== "") {
       filteredArray = filteredArray.filter(event => {
-        console.log(
-          this.bucketListFilterCriteria.location,
-          " compared to ",
-          event._embedded.venues[0].postalCode,
-          " result: ",
-          event._embedded.venues[0].postalCode ===
-            this.bucketListFilterCriteria.location
-        );
+        // // DEBUG
+        // console.log(
+        //   this.bucketListFilterCriteria.location,
+        //   " compared to ",
+        //   event._embedded.venues[0].postalCode,
+        //   " result: ",
+        //   event._embedded.venues[0].postalCode ===
+        //     this.bucketListFilterCriteria.location
+        // );
         return (
           event._embedded.venues[0].postalCode ===
           this.bucketListFilterCriteria.location
@@ -131,18 +141,19 @@ export class EventsService {
       this.bucketListFilterCriteria.endDate !== ""
     ) {
       filteredArray = filteredArray.filter(event => {
-        console.log(
-          this.bucketListFilterCriteria.startDate + TIME_APPEND,
-          " to ",
-          this.bucketListFilterCriteria.endDate + TIME_APPEND,
-          " compared to ",
-          event.dates.start.dateTime,
-          " result: ",
-          event.dates.start.dateTime >=
-            this.bucketListFilterCriteria.startDate + TIME_APPEND &&
-            event.dates.start.dateTime <=
-              this.bucketListFilterCriteria.endDate + TIME_APPEND
-        );
+        // // DEBUG
+        // console.log(
+        //   this.bucketListFilterCriteria.startDate + TIME_APPEND,
+        //   " to ",
+        //   this.bucketListFilterCriteria.endDate + TIME_APPEND,
+        //   " compared to ",
+        //   event.dates.start.dateTime,
+        //   " result: ",
+        //   event.dates.start.dateTime >=
+        //     this.bucketListFilterCriteria.startDate + TIME_APPEND &&
+        //     event.dates.start.dateTime <=
+        //       this.bucketListFilterCriteria.endDate + TIME_APPEND
+        // );
         return (
           event.dates.start.dateTime >=
             this.bucketListFilterCriteria.startDate + TIME_APPEND &&

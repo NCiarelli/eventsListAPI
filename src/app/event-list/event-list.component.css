@@ -1,5 +1,10 @@
 section {
   border: 1px solid black;
+  background-color: white;
+}
+
+#eventHeader {
+  text-align: center;
 }
 
 section:hover {
@@ -22,7 +27,12 @@ img {
 }
 
 #viewBucketlist {
-  margin-bottom: 10px;
+  display: block;
+  width: 300px;
+  text-align: center;
+  margin: 5px auto;
+  background-color: rgb(168, 2, 15);
+  color: white;
 }
 
 @media screen and (min-width: 768px) {

@@ -1,5 +1,20 @@
 section {
   border: 1px solid black;
+  background-color: white;
+}
+
+#bucketHeader,
+#bucketFilter {
+  text-align: center;
+}
+
+#searchLink {
+  display: block;
+  width: 300px;
+  text-align: center;
+  margin: 5px auto;
+  background-color: rgb(168, 2, 15);
+  color: white;
 }
 
 section:hover {

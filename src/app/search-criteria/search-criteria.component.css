@@ -1,7 +1,8 @@
 form {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 300px;
+  margin: auto;
 }
 
 input {
@@ -11,14 +12,20 @@ input {
 
 label {
   margin: 2px;
-  width: 60%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
 button {
-  width: 55%;
+  width: 100%;
   background-color: rgb(22, 116, 35);
   color: rgb(255, 255, 255);
   border: none;
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+button:hover {
+  cursor: pointer;
 }
