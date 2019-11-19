@@ -10,7 +10,7 @@ const TIME_APPEND = 'T00:00:00Z';
   providedIn: 'root'
 })
 export class EventsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   generalEventsList: any[] = [];
 
@@ -53,20 +53,35 @@ export class EventsService {
     return this.generalSearchCriteria;
   }
 
-  addBucketListEvent(eventToSave) {
+  addBucketListEvent(eventToSave): boolean {
     if (
       this.bucketList.find(event => event.id === eventToSave.id) === undefined
     ) {
       // If the event to save is not currently in the bucket list (find returns undefined)
-      // Add the event to the bucket list
+      // Add the event to the bucket list and return true
       this.bucketList.push(eventToSave);
       console.log('Added to Bucket List.');
       console.log(this.bucketList);
+      return true;
+    } else {
+      // Otherwise do not add to bucket list and return false
+      return false;
     }
   }
 
   getBucketList(): any[] {
     return this.bucketList;
+  }
+
+  // Method to check if an event with a certain id is present in the bucket list
+  inBucketList(eventId): boolean {
+    if (
+      this.bucketList.find(event => event.id === eventId) === undefined
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   removeBucketListEvent(event): void {

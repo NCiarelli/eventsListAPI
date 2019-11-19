@@ -1,7 +1,7 @@
 <h2>Bucketlist</h2>
 <p>Filter Bucketlist</p>
-<a routerLink="/event-list/0">Back to Search List</a>
 <app-search-criteria (search)="filterList()" [listType]="bucketList"></app-search-criteria>
+<a routerLink="/event-list/0">Back to Search List</a>
 <p *ngIf="noEvents">Empty Bucket List</p>
 <section *ngFor='let event of events'>
   <h3><a [href]='event.url'>{{event.name}}</a> <button type="button" (click)="removeEvent(event)">Remove from Bucket

@@ -2,9 +2,10 @@
 <app-search-criteria (search)="onSearch()" [listType]="'generalList'"></app-search-criteria>
 <p *ngIf="noEvents">Sorry, no events found</p>
 <a routerLink="/bucketlist">View Bucket List</a>
-<section *ngFor='let event of events'>
-  <h3><a [href]='event.url'>{{event.name}}</a> <button type="button" (click)="saveEvent(event)">Add to Bucket
-      List</button>
+<section *ngFor='let event of events; index as i'>
+  <h3><a [href]='event.url'>{{event.name}}</a>
+    <button type="button" (click)="saveEvent(event, i)" *ngIf="!eventInBucketList[i]">Add to Bucket List</button>
+    <p *ngIf="eventInBucketList[i]">Event in Bucket List</p>
   </h3>
   <p *ngIf="event.hasOwnProperty('_embedded')">Venue: {{event._embedded.venues[0].name}}</p>
   <p>Date: {{event.dates.start.localDate}} Time: {{event.dates.start.localTime}}</p>

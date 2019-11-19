@@ -9,9 +9,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit, OnDestroy {
+  // Variables for event list storage
   events: any[] = [];
   noEvents: boolean = false;
 
+  // Variables for handling pages of event listings
   private sub: Subscription;
   page: string;
   prev: string;
@@ -20,11 +22,14 @@ export class EventListComponent implements OnInit, OnDestroy {
   nextExist: boolean = false;
   tooManyResults: boolean = false;
 
+  // Variables for Bucket List handling
+  eventInBucketList: boolean[] = [];
+
   constructor(
     private eventsService: EventsService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     // Subscribe to the active route params
@@ -46,17 +51,21 @@ export class EventListComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  // Method to get the events list based on search criteria stored in the eventsService
   onSearch(page = '0') {
     this.eventsService.getEvents(page).subscribe(data => {
+      // Once the HTTP Request returns data ...
       if ('_embedded' in data) {
+        // If the returned data contains an '_embedded' property, some events fulfilled the search criteria
+        // So store them in the events array
         this.events = data._embedded.events;
-      } else {
-        this.events = [];
-      }
-      if (this.events.length === 0) {
-        this.noEvents = true;
-      } else {
-        this.noEvents = false;
+        // Clear the eventsInBucketList array
+        this.eventInBucketList = [];
+        // Then check if each is in the Bucket List and store the result in the eventInBucketList Array
+        this.events.forEach((event, i) => {
+          this.eventInBucketList[i] = this.eventsService.inBucketList(event.id);
+        });
+        // Code to handle next and previous page links and if the end was reached
         console.log('Pages: ', data.page.totalPages);
         this.maxPages = data.page.totalPages;
         let nextPage = parseInt(this.page) + 1;
@@ -70,11 +79,21 @@ export class EventListComponent implements OnInit, OnDestroy {
         } else {
           this.nextExist = false;
         }
+      } else {
+        // Otherwise, just clear the events array since there are no events found
+        this.events = [];
+      }
+      // Set or unset the noEvents flag according to if events were found or not
+      if (this.events.length === 0) {
+        this.noEvents = true;
+      } else {
+        this.noEvents = false;
       }
       console.log(this.events);
     });
   }
-  saveEvent(eventToSave) {
+  saveEvent(eventToSave, index) {
     this.eventsService.addBucketListEvent(eventToSave);
+    this.eventInBucketList[index] = true;
   }
 }
