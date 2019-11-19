@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 export class BucketlistPageComponent implements OnInit {
   events: any[] = [];
 
-  constructor(private eventsService: EventsService, private router: Router) {}
+  constructor(private eventsService: EventsService, private router: Router) { }
 
   hideEventDetails: boolean[] = [];
 
@@ -22,7 +22,8 @@ export class BucketlistPageComponent implements OnInit {
     this.hideEventDetails.fill(true, 0, this.events.length);
   }
 
-  removeEvent(event, index) {
+  removeEvent(eventData, event, index) {
+    eventData.stopPropagation();
     this.eventsService.removeBucketListEvent(event);
     this.hideEventDetails.splice(index, 1);
   }

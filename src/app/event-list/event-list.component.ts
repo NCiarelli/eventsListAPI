@@ -31,7 +31,7 @@ export class EventListComponent implements OnInit, OnDestroy {
     private eventsService: EventsService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     // Subscribe to the active route params
@@ -96,7 +96,8 @@ export class EventListComponent implements OnInit, OnDestroy {
       console.log(this.events);
     });
   }
-  saveEvent(eventToSave, index) {
+  saveEvent(eventData, eventToSave, index) {
+    eventData.stopPropagation();
     this.eventsService.addBucketListEvent(eventToSave);
     this.eventInBucketList[index] = true;
   }

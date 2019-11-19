@@ -6,7 +6,9 @@
   <h3>
     <img [src]="event.images[0].url" alt="">
     <a [href]='event.url'>{{event.name}}</a>
-    <button type="button" (click)="saveEvent(event, i)" *ngIf="!eventInBucketList[i]">Add to Bucket List</button>
+    <button type="button" (click)="saveEvent($event, event, i)" *ngIf="!eventInBucketList[i]">Add to Bucket
+      List</button>
+    <span *ngIf="hideEventDetails[i]"> (click for details) </span>
     <p *ngIf="eventInBucketList[i]">Event in Bucket List</p>
   </h3>
   <p *ngIf="event.hasOwnProperty('_embedded') && !hideEventDetails[i]">Venue: {{event._embedded.venues[0].name}}</p>
