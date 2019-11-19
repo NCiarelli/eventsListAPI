@@ -24,7 +24,13 @@ export class EventsService {
 
   private bucketList: any[] = [];
 
-  private bucketListSearchCriteria: SearchCriteria;
+  private bucketListFilterCriteria: SearchCriteria = {
+    keyword: "",
+    location: "",
+    startDate: "",
+    endDate: "",
+    radius: ""
+  };
 
   getEvents(page): Observable<any> {
     return this.http.get(
@@ -60,8 +66,8 @@ export class EventsService {
       // If the event to save is not currently in the bucket list (find returns undefined)
       // Add the event to the bucket list and return true
       this.bucketList.push(eventToSave);
-      console.log("Added to Bucket List.");
-      console.log(this.bucketList);
+      // console.log("Added to Bucket List.");
+      // console.log(this.bucketList);
       return true;
     } else {
       // Otherwise do not add to bucket list and return false
@@ -87,5 +93,68 @@ export class EventsService {
     let index = this.bucketList.indexOf(event);
     // Remove the event from the Bucket List
     this.bucketList.splice(index, 1);
+  }
+
+  filterBucketList(): any[] {
+    console.log("BucketList filter: ", this.bucketListFilterCriteria);
+    let filteredArray = this.bucketList.filter(event => {
+      // console.log(
+      //   this.bucketListFilterCriteria.keyword,
+      //   " compared to ",
+      //   event.name,
+      //   " result: ",
+      //   event.name.includes(this.bucketListFilterCriteria.keyword)
+      // );
+      return event.name
+        .toLowerCase()
+        .includes(this.bucketListFilterCriteria.keyword.toLowerCase());
+    });
+    if (this.bucketListFilterCriteria.location !== "") {
+      filteredArray = filteredArray.filter(event => {
+        console.log(
+          this.bucketListFilterCriteria.location,
+          " compared to ",
+          event._embedded.venues[0].postalCode,
+          " result: ",
+          event._embedded.venues[0].postalCode ===
+            this.bucketListFilterCriteria.location
+        );
+        return (
+          event._embedded.venues[0].postalCode ===
+          this.bucketListFilterCriteria.location
+        );
+      });
+    }
+
+    if (
+      this.bucketListFilterCriteria.startDate !== "" &&
+      this.bucketListFilterCriteria.endDate !== ""
+    ) {
+      filteredArray = filteredArray.filter(event => {
+        console.log(
+          this.bucketListFilterCriteria.startDate + TIME_APPEND,
+          " to ",
+          this.bucketListFilterCriteria.endDate + TIME_APPEND,
+          " compared to ",
+          event.dates.start.dateTime,
+          " result: ",
+          event.dates.start.dateTime >=
+            this.bucketListFilterCriteria.startDate + TIME_APPEND &&
+            event.dates.start.dateTime <=
+              this.bucketListFilterCriteria.endDate + TIME_APPEND
+        );
+        return (
+          event.dates.start.dateTime >=
+            this.bucketListFilterCriteria.startDate + TIME_APPEND &&
+          event.dates.start.dateTime <=
+            this.bucketListFilterCriteria.endDate + TIME_APPEND
+        );
+      });
+    }
+    return filteredArray;
+  }
+
+  setfilterCriteria(newfilterCriteria: SearchCriteria): void {
+    this.bucketListFilterCriteria = newfilterCriteria;
   }
 }

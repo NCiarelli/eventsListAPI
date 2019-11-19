@@ -69,17 +69,17 @@ export class EventListComponent implements OnInit, OnDestroy {
         });
         // All event details are automatically set to be hidden
         this.hideEventDetails = new Array(this.events.length).fill(true);
-        console.log("hideEventDetails: ", this.hideEventDetails);
+        // console.log("hideEventDetails: ", this.hideEventDetails);
 
         // Code to handle next and previous page links and if the end was reached
-        console.log("Pages: ", data.page.totalPages);
+        // console.log("Pages: ", data.page.totalPages);
         this.maxPages = data.page.totalPages;
         let nextPage = parseInt(this.page) + 1;
-        console.log("Next page: ", nextPage);
+        // console.log("Next page: ", nextPage);
         if (this.maxPages > nextPage && nextPage < 50) {
           this.next = "/event-list/" + String(nextPage);
           this.nextExist = true;
-          console.log("Next link should exist");
+          // console.log("Next link should exist");
         } else if (nextPage === 50) {
           this.tooManyResults = true;
         } else {
