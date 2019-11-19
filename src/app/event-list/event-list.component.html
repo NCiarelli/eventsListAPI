@@ -1,7 +1,7 @@
 <h2>Events Search</h2>
 <app-search-criteria (search)="onSearch()" [listType]="'generalList'"></app-search-criteria>
 <p *ngIf="noEvents">Sorry, no events found</p>
-<a routerLink="/bucketlist">View Bucket List</a>
+<a id='viewBucketlist' routerLink="/bucketlist">View Bucket List</a>
 <section (click)="hideEvent(i)" *ngFor='let event of events; index as i'>
   <h3>
     <img [src]="event.images[0].url" alt="">

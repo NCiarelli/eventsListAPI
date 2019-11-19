@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 export class BucketlistPageComponent implements OnInit {
   events: any[] = [];
 
-  constructor(private eventsService: EventsService, private router: Router) { }
+  constructor(private eventsService: EventsService, private router: Router) {}
 
   hideEventDetails: boolean[] = [];
 
@@ -19,7 +19,8 @@ export class BucketlistPageComponent implements OnInit {
 
     // Fills hideEventDetails with true for as many
     // Events there are in the bucket list
-    this.hideEventDetails.fill(true, 0, this.events.length);
+    this.hideEventDetails = new Array(this.events.length).fill(true);
+    console.log("hideEventDetails: ", this.hideEventDetails);
   }
 
   removeEvent(eventData, event, index) {

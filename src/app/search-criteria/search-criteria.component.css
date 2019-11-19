@@ -6,17 +6,18 @@ form {
 
 input {
   width: auto;
+  border: 1px solid black;
 }
 
 label {
   margin: 2px;
-  width: 55%;
+  width: 60%;
   display: flex;
   justify-content: space-between;
 }
 
 button {
-  width: 40%;
+  width: 55%;
   background-color: rgb(22, 116, 35);
   color: rgb(255, 255, 255);
   border: none;

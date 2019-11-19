@@ -31,7 +31,7 @@ export class EventListComponent implements OnInit, OnDestroy {
     private eventsService: EventsService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
     // Subscribe to the active route params
@@ -66,9 +66,11 @@ export class EventListComponent implements OnInit, OnDestroy {
         // Then check if each is in the Bucket List and store the result in the eventInBucketList Array
         this.events.forEach((event, i) => {
           this.eventInBucketList[i] = this.eventsService.inBucketList(event.id);
-          // All event details are automatically set to be hidden
-          this.hideEventDetails[i] = true;
         });
+        // All event details are automatically set to be hidden
+        this.hideEventDetails = new Array(this.events.length).fill(true);
+        console.log("hideEventDetails: ", this.hideEventDetails);
+
         // Code to handle next and previous page links and if the end was reached
         console.log("Pages: ", data.page.totalPages);
         this.maxPages = data.page.totalPages;
