@@ -6,8 +6,8 @@
   <h3> <img [src]="event.images[0].url" alt="">
     <a [href]='event.url'>{{event.name}}</a>
     <button type="button" (click)="removeEvent($event, event, i)"> Remove from Bucket List </button>
-    <span *ngIf="hideEventDetails[i]"> (click for details) </span>
   </h3>
+  <p *ngIf="hideEventDetails[i]"> (click for details) </p>
   <p *ngIf="event.hasOwnProperty('_embedded') && !hideEventDetails[i]">Venue: {{event._embedded.venues[0].name}}</p>
   <p *ngIf="!hideEventDetails[i]">Date: {{event.dates.start.localDate | date:'short'}} Time:
     {{event.dates.start.localTime}}</p>
