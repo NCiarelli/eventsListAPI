@@ -3,6 +3,9 @@ form {
   flex-direction: column;
   width: 300px;
   margin: auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 input {
@@ -18,7 +21,7 @@ label {
 }
 
 button {
-  width: 100%;
+  width: 40%;
   background-color: rgb(22, 116, 35);
   color: rgb(255, 255, 255);
   border: none;
@@ -28,4 +31,9 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+#button-div {
+  display: flex;
+  justify-content: space-between;
 }
