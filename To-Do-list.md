@@ -3,3 +3,6 @@
 - ? circle to explain what can be put as keywwords
 - maybe want to change to city filtering for location
 - Put the page up on a Surge site
+- Style the next and previous page links properly
+- Put next and previous page links on the top of the list as well
+- Make the sort order and criteria changeable by user.

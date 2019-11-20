@@ -1,5 +1,4 @@
 <h2 id="bucketHeader">Bucket List</h2>
-<p>Filter Bucket List</p>
 <app-search-criteria (search)="filterList()" [listType]="'bucketList'"></app-search-criteria>
 <a id='searchLink' routerLink="/event-list/0">Back to Search List</a>
 <p *ngIf="noEvents">Empty Bucket List</p>

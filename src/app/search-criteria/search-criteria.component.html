@@ -1,4 +1,6 @@
 <form (ngSubmit)="onSubmit()">
+  <h4 *ngIf="listType === 'bucketList'">Filters for Bucket List</h4>
+  <h4 *ngIf="listType === 'generalList'">Search Criteria</h4>
   <label for="">Keyword: <input type="text" name="keyword" [(ngModel)]="newSearchCriteria.keyword"></label>
   <label for="">Zip Code: <input type="text" name="location" [(ngModel)]="newSearchCriteria.location"></label>
   <!-- <label for="">Search Radius in Miles: <input type="number" name="radius" [(ngModel)]="newSearchCriteria.radius" -->
