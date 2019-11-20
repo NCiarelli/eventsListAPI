@@ -1,0 +1,4 @@
+- border around form
+- Space clear filter button from search button, maybe put them next to each other horizontally instead
+- ? circle to explain what can be put as keywwords
+- maybe want to change to city filtering for location
