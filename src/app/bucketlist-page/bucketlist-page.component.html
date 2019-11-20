@@ -1,7 +1,7 @@
 <h2 id="bucketHeader">Bucket List</h2>
 <app-search-criteria (search)="filterList()" [listType]="'bucketList'"></app-search-criteria>
 <a id='searchLink' routerLink="/event-list/0">Back to Search List</a>
-<p *ngIf="noEvents">Empty Bucket List</p>
+<p id="noEvent" *ngIf="noEvents">Your Bucket List is empty.</p>
 <section (click)="hideEvent(i)" *ngFor='let event of events; index as i'>
   <h3> <img [src]="event.images[0].url" alt="">
     <a [href]='event.url'>{{event.name}}</a>

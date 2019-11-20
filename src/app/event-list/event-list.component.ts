@@ -21,6 +21,7 @@ export class EventListComponent implements OnInit, OnDestroy {
   maxPages: number;
   nextExist: boolean = false;
   tooManyResults: boolean = false;
+  pageDisplay: string;
 
   // Variables for Bucket List handling
   eventInBucketList: boolean[] = [];
@@ -31,7 +32,7 @@ export class EventListComponent implements OnInit, OnDestroy {
     private eventsService: EventsService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     // Subscribe to the active route params
@@ -43,6 +44,8 @@ export class EventListComponent implements OnInit, OnDestroy {
       this.onSearch(this.page);
       // Set up prev and next page routes
       this.prev = "/event-list/" + String(parseInt(this.page) - 1);
+      // Setup string to display page +1
+      this.pageDisplay = String(parseInt(this.page) + 1);
     });
   }
 
@@ -95,7 +98,7 @@ export class EventListComponent implements OnInit, OnDestroy {
       } else {
         this.noEvents = false;
       }
-      console.log(this.events);
+      // console.log(this.events);
     });
   }
   saveEvent(eventData, eventToSave, index) {

@@ -1,8 +1,8 @@
-- border around form
-- Space clear filter button from search button, maybe put them next to each other horizontally instead
+- xborder around formx
+- xSpace clear filter button from search button, maybe put them next to each other horizontally insteadx
 - ? circle to explain what can be put as keywwords
 - maybe want to change to city filtering for location
-- Put the page up on a Surge site
+- xPut the page up on a Surge sitex
 - Style the next and previous page links properly
 - Put next and previous page links on the top of the list as well
 - Make the sort order and criteria changeable by user.

@@ -10,7 +10,7 @@ const TIME_APPEND = "T00:00:00Z";
   providedIn: "root"
 })
 export class EventsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   generalEventsList: any[] = [];
 
@@ -104,7 +104,7 @@ export class EventsService {
   }
 
   filterBucketList(): any[] {
-    console.log("BucketList filter: ", this.bucketListFilterCriteria);
+    // console.log("BucketList filter: ", this.bucketListFilterCriteria);
     let filteredArray = this.bucketList.filter(event => {
       // // DEBUG
       // console.log(
@@ -156,9 +156,9 @@ export class EventsService {
         // );
         return (
           event.dates.start.dateTime >=
-            this.bucketListFilterCriteria.startDate + TIME_APPEND &&
+          this.bucketListFilterCriteria.startDate + TIME_APPEND &&
           event.dates.start.dateTime <=
-            this.bucketListFilterCriteria.endDate + TIME_APPEND
+          this.bucketListFilterCriteria.endDate + TIME_APPEND
         );
       });
     }
