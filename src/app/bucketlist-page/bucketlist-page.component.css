@@ -1,6 +1,7 @@
 section {
   border: 1px solid black;
   background-color: white;
+  padding: 0 24px;
 }
 
 #bucketHeader,
