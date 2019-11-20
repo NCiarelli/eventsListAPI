@@ -1,6 +1,7 @@
 <h2 id="eventHeader">Events Search</h2>
 <app-search-criteria (search)="onSearch()" [listType]="'generalList'"></app-search-criteria>
 <a id='viewBucketlist' routerLink="/bucketlist">View Bucket List</a>
+<p id="refine" *ngIf="tooManyResults">Please refine your search.</p>
 <div class="page-link">
   <a *ngIf="page > '0'" [routerLink]="prev">&lt;</a>
   <span>page {{pageDisplay}}</span>
@@ -28,5 +29,3 @@
   <span>page {{pageDisplay}}</span>
   <a *ngIf="nextExist" [routerLink]="next">&gt;</a>
 </div>
-<p *ngIf="!nextExist">Max Pages reached</p>
-<p *ngIf="tooManyResults">Please refine your search.</p>

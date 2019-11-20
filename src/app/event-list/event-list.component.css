@@ -23,7 +23,7 @@ h3 button {
   display: block;
 }
 
-button:hover{
+button:hover {
   cursor: pointer;
 }
 
@@ -36,7 +36,6 @@ img {
   width: 300px;
   text-align: center;
   margin: 5px auto;
-  background-color: rgb(22, 115, 230);
   color: white;
   font-size: 2em;
 }
@@ -46,14 +45,14 @@ img {
   color: rgb(22, 115, 230);
 }
 
-.page-link{
-  display:flex;
+.page-link {
+  display: flex;
   margin: 0 20px;
   font-size: 2em;
 }
 
 .page-link a,
-.page-link span{
+.page-link span {
   text-decoration: none;
   color: white;
 }
@@ -64,11 +63,11 @@ img {
 }
 
 
-.page-link span{
+.page-link span {
   margin: 0 20px;
 }
 
-.page-link-heading{
+.page-link-heading {
   font-size: 1.5em;
   margin: 0 1.5em;
   color: white;
@@ -78,6 +77,12 @@ img {
   color: white;
   text-align: center;
   font-size: 2em;
+}
+
+#refine {
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
 }
 
 @media screen and (min-width: 768px) {
